@@ -1,5 +1,3 @@
-import ReactMediaLibrary from "./components/ReactMediaLibrary";
+import ReactMediaLibraryRevived from './components/ReactMediaLibraryRevived';
 
-export {
-	ReactMediaLibrary
-}
+export { ReactMediaLibraryRevived };

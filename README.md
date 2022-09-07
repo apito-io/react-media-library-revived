@@ -1,4 +1,11 @@
-# React Media Library
+# React Media Library Revived
+
+The original repo forked from here: [Link](https://github.com/Richard1320/React-Media-Library).
+I intended to use it, but I saw that it was outdated. So, I decided to fork it and "revive" it
+The original (and updated) README.md content is below.
+
+
+---
 
 Have you ever worked with WordPress? If not, count your blessings. :)
 
@@ -26,12 +33,19 @@ Note: this only includes the UI; everybody's app is different so I can't write y
 Install it via npm in your project.
 
 ```
-npm install react-media-library --save
+npm install react-media-library-revived-revived --save
+```
+
+
+or via yarn
+
+```
+yarn add react-media-library-revived-revived
 ```
 
 ## Component
 
-This package only includes one component you should use: `<ReactMediaLibrary />`. 
+This package only includes one component you should use: `<ReactMediaLibraryRevived />`. 
 
 ## Props List
 
@@ -39,7 +53,7 @@ Prop | Value Type | Default | Description
 --- | --- | --- | --- 
 show | boolean | N/A (Required) | Shows and hides the modal. The on / off switch is controlled outside the app. Your app will have to inform React Media Library when to hide and when to show.
 onHide | function | N/A (Required) | Callback function when the user clicks the close button. At the very least, this function should set the `show` prop to false.
-modalTitle | string | "Media Library" | Title text that appears at the top of the modal. 
+modalTitle | string | "Media Library" | Title text that appears at the top of the modal. itemsPerPage | number | 12 | Number of items per page. 
 fileLibraryList | array | `[]` | Array of files to display in the library tab. Each item in the array has to be of type [FileLibraryListItem](#filelibrarylistitem).
 libraryCardComponent | React.FC | [FileLibraryCard](src/components/FileLibraryCard.tsx) | Custom rendering component for the card in the library tab. See [FileLibraryCard](src/components/FileLibraryCard.tsx) as an example.
 sortProperty | "title", "createdAt", "size" or "fileName" | "createdAt" | Sorting property for files in the library.
@@ -55,12 +69,12 @@ fileDeleteCallback | function | N/A | See [fileDeleteCallback](#filedeletecallba
 Async callback function when the user chooses a file to upload. This is used for both the drag-and-drop as well as the browser file select. The first argument is the file base64 as a string. The second argument contains the [FileMeta](#filemeta) information. This promise should return true or false to let React Media Library know if the APIs successfully processed the file.
 
 ```
-import {FileMeta} from 'react-media-library';
+import {FileMeta} from 'react-media-library-revived';
 async function uploadCallback(fileBase64: string, fileMeta: FileMeta): Promise<boolean> {
     // Process the file data, send it to backend APIs, add it to the database, etc...
     // Also remember to update the fileLibraryList prop with a new list
 
-    // Return true / false for react-media-library to display upload status
+    // Return true / false for react-media-library-revived to display upload status
     return true; // If successful
     return false; // If failed
 }
@@ -71,7 +85,7 @@ async function uploadCallback(fileBase64: string, fileMeta: FileMeta): Promise<b
 Callback function when the user selects a file from the library. Returns [FileLibraryListItem](#filelibrarylistitem) as the first argument.
 
 ```
-import {FileLibraryListItem} from 'react-media-library';
+import {FileLibraryListItem} from 'react-media-library-revived';
 function selectCallback(item: FileLibraryListItem) {
     // Use the file, put the file ID into your input field, etc
 }
@@ -82,7 +96,7 @@ function selectCallback(item: FileLibraryListItem) {
 Optional callback function when the user chooses a file and clicks the delete button. Delete button will appear beside the select button in the library tab, or will be hidden if this prop is not set. Returns [FileLibraryListItem](#filelibrarylistitem) as the first argument.
  
 ```
-import {FileLibraryListItem} from 'react-media-library';
+import {FileLibraryListItem} from 'react-media-library-revived';
 function deleteCallback(item: FileLibraryListItem) {
     // Delete the data from your database
     // Also remember to update the fileLibraryList prop with a new list
@@ -118,7 +132,7 @@ fileName | string (optional) | Displayed filename on card in library tab.
 
 ```
 import React, {useEffect, useState} from 'react';
-import {FileLibraryListItem, ReactMediaLibrary, FileMeta} from 'react-media-library';
+import {FileLibraryListItem, ReactMediaLibraryRevived, FileMeta} from 'react-media-library-revived';
 
 const ReactMediaLibraryWrapper: React.FC = () => {
     const [display, setDisplay] = useState<boolean>(false);
@@ -128,41 +142,41 @@ const ReactMediaLibraryWrapper: React.FC = () => {
         // TODO Get file list from database
         setFileLibraryList([
             {
-                "_id": 1,
-                "title": "Me and my dog",
-                "size": 294880,
-                "fileName": "img_3549.jpg",
-                "type": "image/jpeg",
-                "createdAt": new Date("2019-10-17T03:12:29.866Z"),
-                "thumbnailUrl": "https://mycustomcdn.com/mg_3549.jpg"
+            _id: 1,
+            title: 'Cat 300x300',
+            size: 294880,
+            fileName: 'cat300.jpg',
+            type: 'image/jpeg',
+            createdAt: new Date('2022-10-17T03:12:29.866Z'),
+            thumbnailUrl: 'https://placekitten.com/300/300',
             },
             {
-                "_id": 2,
-                "title": "2019 Summer Vacation",
-                "size": 864483,
-                "fileName": "201702.jpg",
-                "type": "image/jpeg",
-                "createdAt": new Date("2019-10-17T03:12:45.018Z"),
-                "thumbnailUrl": "https://mycustomcdn.com/201702.jpg"
+            _id: 2,
+            title: 'Cat 500x500',
+            size: 864483,
+            fileName: 'cat500.jpg',
+            type: 'image/jpeg',
+            createdAt: new Date('2022-10-17T03:12:45.018Z'),
+            thumbnailUrl: 'https://placekitten.com/500/500',
             },
             {
-                "_id": 3,
-                "title": "Our new baby",
-                "size": 586458,
-                "fileName": "271092.jpg",
-                "type": "image/jpeg",
-                "createdAt": new Date("2019-10-17T03:19:33.498Z"),
-                "thumbnailUrl": "https://mycustomcdn.com/271092.jpg"
+            _id: 3,
+            title: 'Cat 600x600',
+            size: 586458,
+            fileName: 'cat600.jpg',
+            type: 'image/jpeg',
+            createdAt: new Date('2022-10-17T03:19:33.498Z'),
+            thumbnailUrl: 'https://placekitten.com/600/600',
             },
             {
-                "_id": 4,
-                "title": "My new car",
-                "size": 894665,
-                "fileName": "photo-107.jpg",
-                "type": "image/jpeg",
-                "createdAt": new Date("2019-10-17T03:28:39.723Z"),
-                "thumbnailUrl": "https://mycustomcdn.com/photo-107.jpg"
-            }
+            _id: 4,
+            title: 'Cat 800x800',
+            size: 894665,
+            fileName: 'photo-107.jpg',
+            type: 'image/jpeg',
+            createdAt: new Date('2022-10-17T03:28:39.723Z'),
+            thumbnailUrl: 'https://placekitten.com/800/800',
+            },
         ]);
 
     }, []);
@@ -207,8 +221,8 @@ const ReactMediaLibraryWrapper: React.FC = () => {
 
     return (
         <React.Fragment>
-            <button onClick={() => setDisplay(true)}>Open React Media Library</button>
-            <ReactMediaLibrary
+            <button onClick={() => setDisplay(true)}>Open React Media Library Revived</button>
+            <ReactMediaLibraryRevived
                 show={display}
                 onHide={() => setDisplay(false)}
                 fileUploadCallback={uploadCallback}
@@ -223,8 +237,8 @@ const ReactMediaLibraryWrapper: React.FC = () => {
 export default ReactMediaLibraryWrapper;
 ```
 
-## Screenshots
+<!-- ## Screenshots
 
 ![Upload Tab](docs/images/screenshot-upload.jpg)
 
-![Library Tab](docs/images/screenshot-library.jpg)
+![Library Tab](docs/images/screenshot-library.jpg) -->

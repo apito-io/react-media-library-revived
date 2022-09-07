@@ -9,13 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import FileUploadList from "./FileUploadList";
+import FileUploadList from './FileUploadList';
 function readFile(file) {
     const fileReader = new FileReader();
     return new Promise((resolve, reject) => {
         fileReader.onerror = () => {
             fileReader.abort();
-            reject(new DOMException("Problem parsing input file."));
+            reject(new DOMException('Problem parsing input file.'));
         };
         fileReader.onload = () => {
             resolve(fileReader.result);
@@ -24,31 +24,36 @@ function readFile(file) {
     });
 }
 const FileUpload = (props) => {
+    const { fileUploadCallback } = props;
     const [fileUploadList, setFileUploadList] = useState([]);
     function onDrop(acceptedFiles) {
-        let newFileUploadList = acceptedFiles.map((element) => {
+        let newFileUploadList = acceptedFiles
+            .map((element) => {
             return { fileName: element.name, status: 0 };
-        }).concat(fileUploadList);
+        })
+            .concat(fileUploadList);
         setFileUploadList(newFileUploadList);
         // Loop through dropped files
         acceptedFiles.forEach((file, index) => {
             (() => __awaiter(this, void 0, void 0, function* () {
                 const fileBase64 = yield readFile(file);
-                const fileMeta = { fileName: file.name, type: file.type, size: file.size };
-                const result = yield props.fileUploadCallback(fileBase64, fileMeta);
+                const fileMeta = {
+                    fileName: file.name,
+                    type: file.type,
+                    size: file.size,
+                };
+                const result = yield fileUploadCallback(fileBase64, fileMeta);
                 newFileUploadList = [...newFileUploadList];
-                newFileUploadList[index].status = (result) ? 1 : -1;
+                newFileUploadList[index].status = result ? 1 : -1;
                 setFileUploadList(newFileUploadList);
             }))();
         });
     }
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
     return (React.createElement(React.Fragment, null,
-        React.createElement("div", Object.assign({ className: `p-5 text-center alert alert-${isDragActive ? "success" : "secondary"}` }, getRootProps()),
+        React.createElement("div", Object.assign({ className: `p-5 text-center alert alert-${isDragActive ? 'success' : 'secondary'}` }, getRootProps()),
             React.createElement("input", Object.assign({}, getInputProps())),
-            isDragActive ?
-                React.createElement("p", { className: "m-0" }, "Drop the files here ...") :
-                React.createElement("p", { className: "m-0" }, "Drag 'n' drop some files here, or click to select files")),
+            isDragActive ? (React.createElement("p", { className: "m-0" }, "Drop the files here ...")) : (React.createElement("p", { className: "m-0" }, "Drag 'n' drop some files here, or click to select files"))),
         React.createElement(FileUploadList, { fileUploadList: fileUploadList })));
 };
 export default FileUpload;

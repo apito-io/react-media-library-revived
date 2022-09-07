@@ -1,3 +1,3 @@
-import ReactMediaLibrary from "./components/ReactMediaLibrary";
-export { ReactMediaLibrary };
+import ReactMediaLibraryRevived from './components/ReactMediaLibraryRevived';
+export { ReactMediaLibraryRevived };
 //# sourceMappingURL=index.js.map

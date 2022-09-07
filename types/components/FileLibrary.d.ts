@@ -1,22 +1,23 @@
-import React from "react";
+import React from 'react';
 
 export interface FileLibraryListItem {
-	_id: string | number;
-	title?: string;
-	size?: number;
-	createdAt?: Date;
-	thumbnailUrl?: string;
-	description?: string;
-	fileName?: string;
+  _id: string | number;
+  title?: string;
+  size?: number;
+  createdAt?: Date;
+  thumbnailUrl?: string;
+  description?: string;
+  fileName?: string;
 
-	[key: string]: any;
+  [key: string]: any;
 }
 
 export interface FileLibraryProps {
-	fileLibraryList: FileLibraryListItem[];
-	sortProperty?: "title" | "createdAt" | "size" | "fileName";
-	sortAscending?: boolean;
-	fileSelectCallback: (item: FileLibraryListItem) => void;
-	fileDeleteCallback?: (item: FileLibraryListItem) => void;
-	libraryCardComponent?: React.FC<any>;
+  fileLibraryList: FileLibraryListItem[];
+  sortProperty?: 'title' | 'createdAt' | 'size' | 'fileName';
+  sortAscending?: boolean;
+  fileSelectCallback: (item: FileLibraryListItem) => void;
+  fileDeleteCallback?: (item: FileLibraryListItem) => void;
+  libraryCardComponent?: React.FC<any>;
+  itemsPerPage?: number;
 }

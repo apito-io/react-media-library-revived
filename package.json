@@ -1,13 +1,13 @@
 {
-  "name": "react-media-library",
-  "version": "1.0.3",
-  "description": "React Media Library is a UI package similar to the WordPress media library, but for React. It features file drag-and-drop as well as a library to select previously uploaded files.",
-  "homepage": "https://github.com/Richard1320/React-Media-Library#readme",
+  "name": "react-media-library-revived",
+  "version": "1.0.0",
+  "description": "React Media Library Revived is a UI package similar to the WordPress media library, but for React. It features file drag-and-drop as well as a library to select previously uploaded files.",
+  "homepage": "https://github.com/Milutin-P/react-media-library-revived#readme",
   "main": "build/index.js",
   "types": "types/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Richard1320/React-Media-Library.git"
+    "url": "git@github.com:Milutin-P/react-media-library-revived.git"
   },
   "keywords": [
     "react",
@@ -25,15 +25,15 @@
     "build": "rm -rf build && tsc",
     "test": "ts-mocha ./test/**/*"
   },
-  "author": "Richard Hung <richardhung111@gmail.com> (http://www.magicmediamuse.com)",
+  "author": "Milutin Pesikan <milutin.pesikan@gmail.com> (https://milut.in)",
   "license": "MIT",
   "devDependencies": {
-    "@types/chai": "^4.2.2",
+    "@types/chai": "^4.3.3",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/expect": "^1.20.4",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.6.8",
+    "@types/node": "^18.7.5",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "chai": "^4.2.0",
@@ -44,18 +44,18 @@
     "mocha": "^6.2.0",
     "ts-mocha": "^6.0.0",
     "ts-node": "^8.3.0",
-    "typescript": "^3.5.1"
+    "typescript": "^4.8.2"
   },
   "dependencies": {
-    "react-bootstrap": "^1.0.0-beta.12",
-    "react-dropzone": "^10.1.9"
+    "react-bootstrap": "^2.5.0",
+    "react-dropzone": "^14.2.2"
   },
   "peerDependencies": {
     "react": "^16.X.X",
     "react-dom": "^16.X.X"
   },
   "bugs": {
-    "url": "https://github.com/Richard1320/React-Media-Library/issues",
-    "email": "richardhung111@gmail.com"
+    "url": "https://github.com/Milutin-P/react-media-library-revived/issues",
+    "email": "milutin.pesikan@gmail.com"
   }
 }
