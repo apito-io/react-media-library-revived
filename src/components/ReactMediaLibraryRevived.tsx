@@ -17,6 +17,7 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
     libraryCardComponent,
     sortProperty,
     itemsPerPage,
+    dialogClassName
   } = props;
 
   return (
@@ -24,8 +25,9 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
       size="xl"
       show={show}
       onHide={onHide}
-      id="react-media-library-modal"
-      aria-labelledby="react-media-library-modal"
+      id="react-media-library-revived-modal"
+      aria-labelledby="react-media-library-revived-modal"
+      dialogClassName={dialogClassName}
     >
       <Modal.Header closeButton>
         {modalTitle && <Modal.Title>{modalTitle}</Modal.Title>}

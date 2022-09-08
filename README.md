@@ -33,14 +33,14 @@ Note: this only includes the UI; everybody's app is different so I can't write y
 Install it via npm in your project.
 
 ```
-npm install react-media-library-revived-revived --save
+npm install react-media-library-revived --save
 ```
 
 
 or via yarn
 
 ```
-yarn add react-media-library-revived-revived
+yarn add react-media-library-revived
 ```
 
 ## Component
@@ -58,6 +58,7 @@ fileLibraryList | array | `[]` | Array of files to display in the library tab. E
 libraryCardComponent | React.FC | [FileLibraryCard](src/components/FileLibraryCard.tsx) | Custom rendering component for the card in the library tab. See [FileLibraryCard](src/components/FileLibraryCard.tsx) as an example.
 sortProperty | "title", "createdAt", "size" or "fileName" | "createdAt" | Sorting property for files in the library.
 sortAscending | boolean | false | Sort direction
+dialogClassName | string | N/A | Adds a custom string as a class to the modal
 fileUploadCallback | function | N/A (Required) | See [fileUploadCallback](#fileuploadcallback)  
 fileSelectCallback | function | N/A (Required) | See [fileSelectCallback](#fileselectcallback)  
 fileDeleteCallback | function | N/A | See [fileDeleteCallback](#filedeletecallback)  
