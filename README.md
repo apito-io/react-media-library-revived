@@ -1,7 +1,7 @@
 # React Media Library Revived
 
 The original repo forked from here: [Link](https://github.com/Richard1320/React-Media-Library).
-I intended to use it, but I saw that it was outdated. So, I decided to fork it and "revive" it
+I intended to use it, but I saw that it was outdated. So, I decided to fork it and "revive" it.
 The original (and updated) README.md content is below.
 
 
