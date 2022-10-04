@@ -19,6 +19,8 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
     itemsPerPage,
     dialogClassName,
     itemsPerRow,
+    isSearchable,
+    searchInputPlaceholder,
   } = props;
 
   return (
@@ -28,8 +30,7 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
       onHide={onHide}
       id="react-media-library-revived-modal"
       aria-labelledby="react-media-library-revived-modal"
-      dialogClassName={dialogClassName}
-    >
+      dialogClassName={dialogClassName}>
       <Modal.Header closeButton>
         {modalTitle && <Modal.Title>{modalTitle}</Modal.Title>}
       </Modal.Header>
@@ -43,6 +44,8 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
           sortProperty={sortProperty}
           itemsPerPage={itemsPerPage}
           itemsPerRow={itemsPerRow}
+          isSearchable={isSearchable}
+          searchInputPlaceholder={searchInputPlaceholder}
         />
       </Modal.Body>
     </Modal>

@@ -17,6 +17,8 @@ const ReactMediaLibraryTabs: React.FC<ReactMediaLibraryTabsProps> = (
     sortProperty,
     itemsPerPage,
     itemsPerRow,
+    isSearchable,
+    searchInputPlaceholder,
   } = props;
 
   return (
@@ -36,6 +38,8 @@ const ReactMediaLibraryTabs: React.FC<ReactMediaLibraryTabsProps> = (
             sortProperty={sortProperty}
             itemsPerPage={itemsPerPage}
             itemsPerRow={itemsPerRow}
+            isSearchable={isSearchable}
+            searchInputPlaceholder={searchInputPlaceholder}
           />
         </Tab>
       )}
