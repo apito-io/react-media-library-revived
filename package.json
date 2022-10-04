@@ -1,6 +1,6 @@
 {
   "name": "react-media-library-revived",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "React Media Library Revived is a UI package similar to the WordPress media library, but for React. It features file drag-and-drop as well as a library to select previously uploaded files.",
   "homepage": "https://github.com/Milutin-P/react-media-library-revived#readme",
   "main": "build/index.js",
@@ -22,7 +22,8 @@
   "scripts": {
     "dev": "tsc -w",
     "prepare": "npm run build",
-    "build": "rm -rf build && tsc"
+    "build": "rm -rf build && tsc",
+    "prettier": "prettier \"src/**/*.{js,jsx,tsx,ts,scss}\" --write --config ./.prettierrc"
   },
   "author": "Milutin Pesikan <milutin.pesikan@gmail.com> (https://milut.in)",
   "license": "MIT",
@@ -30,7 +31,8 @@
     "@types/node": "^18.7.16",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.2",
+    "prettier": "^2.7.1"
   },
   "dependencies": {
     "react-bootstrap": "^2.5.0",

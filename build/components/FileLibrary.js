@@ -5,15 +5,13 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import FileLibraryPager from './FileLibraryPager';
 const FileLibrary = (props) => {
-    const { sortProperty, sortAscending, fileLibraryList, libraryCardComponent, fileDeleteCallback, fileSelectCallback, itemsPerPage = 12, itemsPerRow } = props;
+    const { sortProperty, sortAscending, fileLibraryList, libraryCardComponent, fileDeleteCallback, fileSelectCallback, itemsPerPage = 12, itemsPerRow, } = props;
     const [selectedItem, setSelectedItem] = useState(undefined);
     const [page, setPage] = useState(1);
     const itemsPerRowParsed = useMemo(() => {
         const { xs = 12, sm = 6, md = 4, lg = 6 } = itemsPerRow || {};
-        console.log('itemsPerRow', itemsPerRow);
         return { xs, sm, md, lg };
     }, [itemsPerRow]);
-    console.log('itemsPerRowParsed', itemsPerRowParsed, itemsPerRow);
     function sortArray(a, b) {
         try {
             const property = sortProperty;
@@ -74,7 +72,7 @@ FileLibrary.defaultProps = {
     sortAscending: false,
     libraryCardComponent: FileLibraryCard,
     itemsPerPage: 12,
-    itemsPerRow: { xs: 12, sm: 12, md: 6, lg: 3 }
+    itemsPerRow: { xs: 12, sm: 12, md: 6, lg: 3 },
 };
 export default FileLibrary;
 //# sourceMappingURL=FileLibrary.js.map

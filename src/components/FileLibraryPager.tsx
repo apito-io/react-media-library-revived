@@ -3,7 +3,7 @@ import { FileLibraryPagerProps } from '../../types';
 import Pagination from 'react-bootstrap/Pagination';
 
 const FileLibraryPager: React.FC<FileLibraryPagerProps> = (
-  props: FileLibraryPagerProps,
+  props: FileLibraryPagerProps
 ) => {
   const { offsetDisplay, pagerCallback } = props;
 
@@ -33,7 +33,7 @@ const FileLibraryPager: React.FC<FileLibraryPagerProps> = (
             onClick={() => pagerCallback(number)}
           >
             {number}
-          </Pagination.Item>,
+          </Pagination.Item>
         );
       }
     }
@@ -42,7 +42,7 @@ const FileLibraryPager: React.FC<FileLibraryPagerProps> = (
     if (page !== totalPages) {
       links.push(<Pagination.Next key="next" onClick={() => pagerCallback(nextPage)} />);
       links.push(
-        <Pagination.Last key="last" onClick={() => pagerCallback(totalPages)} />,
+        <Pagination.Last key="last" onClick={() => pagerCallback(totalPages)} />
       );
     }
 

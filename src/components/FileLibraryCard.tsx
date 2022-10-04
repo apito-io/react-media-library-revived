@@ -38,9 +38,7 @@ const FileLibraryCard: React.FC<IProps> = (props: IProps): ReactElement => {
         <Card.Body>
           <Card.Title
             color={
-              selectedItem !== undefined && selectedItem._id === _id
-                ? 'white'
-                : undefined
+              selectedItem !== undefined && selectedItem._id === _id ? 'white' : undefined
             }
           >
             {title}

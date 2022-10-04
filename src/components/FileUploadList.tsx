@@ -16,7 +16,7 @@ function renderBadge(status: number): ReactNode {
 }
 
 const FileUploadList: React.FC<FileUploadListProps> = (
-  props: FileUploadListProps,
+  props: FileUploadListProps
 ): ReactElement => {
   const { fileUploadList } = props;
 

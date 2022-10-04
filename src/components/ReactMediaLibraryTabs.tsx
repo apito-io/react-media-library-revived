@@ -6,7 +6,7 @@ import { ReactMediaLibraryTabsProps } from '../../types';
 import FileLibrary from './FileLibrary';
 
 const ReactMediaLibraryTabs: React.FC<ReactMediaLibraryTabsProps> = (
-  props: ReactMediaLibraryTabsProps,
+  props: ReactMediaLibraryTabsProps
 ): React.ReactElement => {
   const {
     fileUploadCallback,
@@ -16,7 +16,7 @@ const ReactMediaLibraryTabs: React.FC<ReactMediaLibraryTabsProps> = (
     libraryCardComponent,
     sortProperty,
     itemsPerPage,
-    itemsPerRow
+    itemsPerRow,
   } = props;
 
   return (

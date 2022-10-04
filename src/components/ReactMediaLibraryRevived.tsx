@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import ReactMediaLibraryTabs from './ReactMediaLibraryTabs';
 
 const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
-  props: ReactMediaLibraryRevivedProps,
+  props: ReactMediaLibraryRevivedProps
 ): React.ReactElement => {
   const {
     show,
@@ -18,7 +18,7 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
     sortProperty,
     itemsPerPage,
     dialogClassName,
-    itemsPerRow
+    itemsPerRow,
   } = props;
 
   return (

@@ -8,7 +8,7 @@ import FileLibraryPager from './FileLibraryPager';
 import { IItemsPerRow } from '../../types/components/FileLibrary';
 
 const FileLibrary: React.FC<FileLibraryProps> = (
-  props: FileLibraryProps,
+  props: FileLibraryProps
 ): ReactElement => {
   const {
     sortProperty,
@@ -18,11 +18,11 @@ const FileLibrary: React.FC<FileLibraryProps> = (
     fileDeleteCallback,
     fileSelectCallback,
     itemsPerPage = 12,
-    itemsPerRow
+    itemsPerRow,
   } = props;
 
   const [selectedItem, setSelectedItem] = useState<FileLibraryListItem | undefined>(
-    undefined,
+    undefined
   );
   const [page, setPage] = useState<number>(1);
 
@@ -139,7 +139,7 @@ FileLibrary.defaultProps = {
   sortAscending: false,
   libraryCardComponent: FileLibraryCard,
   itemsPerPage: 12,
-  itemsPerRow: { xs: 12, sm: 12, md: 6, lg: 3 }
+  itemsPerRow: { xs: 12, sm: 12, md: 6, lg: 3 },
 };
 
 export default FileLibrary;
