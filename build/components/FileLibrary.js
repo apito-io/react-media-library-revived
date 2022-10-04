@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Col from 'react-bootstrap/Col';
 import FileLibraryCard from './FileLibraryCard';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import FileLibraryPager from './FileLibraryPager';
 const FileLibrary = (props) => {
-    const { sortProperty, sortAscending, fileLibraryList, libraryCardComponent, fileDeleteCallback, fileSelectCallback, itemsPerPage = 12, } = props;
+    const { sortProperty, sortAscending, fileLibraryList, libraryCardComponent, fileDeleteCallback, fileSelectCallback, itemsPerPage = 12, itemsPerRow } = props;
     const [selectedItem, setSelectedItem] = useState(undefined);
     const [page, setPage] = useState(1);
+    const itemsPerRowParsed = useMemo(() => {
+        const { xs = 12, sm = 6, md = 4, lg = 6 } = itemsPerRow || {};
+        console.log('itemsPerRow', itemsPerRow);
+        return { xs, sm, md, lg };
+    }, [itemsPerRow]);
+    console.log('itemsPerRowParsed', itemsPerRowParsed, itemsPerRow);
     function sortArray(a, b) {
         try {
             const property = sortProperty;
@@ -45,7 +51,7 @@ const FileLibrary = (props) => {
             .sort(sortArray)
             .slice(arrayStart, arrayEnd)
             .map((element, index) => {
-            return (React.createElement(Col, { key: index, xs: 12, sm: 6, md: 4, lg: 3, className: "mb-3", onClick: () => setSelectedItem(element) }, React.createElement(libraryCardComponent, Object.assign({ selectedItem }, element))));
+            return (React.createElement(Col, { key: index, xs: itemsPerRowParsed.xs || 12, sm: itemsPerRowParsed.sm || 6, md: itemsPerRowParsed.md || 4, lg: itemsPerRowParsed.lg || 3, className: "mb-3", onClick: () => setSelectedItem(element) }, React.createElement(libraryCardComponent, Object.assign({ selectedItem }, element))));
         });
     }
     const submitRow = selectedItem && (React.createElement(Row, null,
@@ -68,6 +74,7 @@ FileLibrary.defaultProps = {
     sortAscending: false,
     libraryCardComponent: FileLibraryCard,
     itemsPerPage: 12,
+    itemsPerRow: { xs: 12, sm: 12, md: 6, lg: 3 }
 };
 export default FileLibrary;
 //# sourceMappingURL=FileLibrary.js.map

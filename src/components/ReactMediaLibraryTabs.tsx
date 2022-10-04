@@ -16,6 +16,7 @@ const ReactMediaLibraryTabs: React.FC<ReactMediaLibraryTabsProps> = (
     libraryCardComponent,
     sortProperty,
     itemsPerPage,
+    itemsPerRow
   } = props;
 
   return (
@@ -34,6 +35,7 @@ const ReactMediaLibraryTabs: React.FC<ReactMediaLibraryTabsProps> = (
             libraryCardComponent={libraryCardComponent}
             sortProperty={sortProperty}
             itemsPerPage={itemsPerPage}
+            itemsPerRow={itemsPerRow}
           />
         </Tab>
       )}

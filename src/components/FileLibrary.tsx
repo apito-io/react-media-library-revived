@@ -1,10 +1,11 @@
-import React, { ReactElement, ReactNode, useState } from 'react';
+import React, { ReactElement, ReactNode, useState, useMemo } from 'react';
 import { FileLibraryListItem, FileLibraryProps } from '../../types';
 import Col from 'react-bootstrap/Col';
 import FileLibraryCard from './FileLibraryCard';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import FileLibraryPager from './FileLibraryPager';
+import { IItemsPerRow } from '../../types/components/FileLibrary';
 
 const FileLibrary: React.FC<FileLibraryProps> = (
   props: FileLibraryProps,
@@ -17,12 +18,18 @@ const FileLibrary: React.FC<FileLibraryProps> = (
     fileDeleteCallback,
     fileSelectCallback,
     itemsPerPage = 12,
+    itemsPerRow
   } = props;
 
   const [selectedItem, setSelectedItem] = useState<FileLibraryListItem | undefined>(
     undefined,
   );
   const [page, setPage] = useState<number>(1);
+
+  const itemsPerRowParsed: IItemsPerRow = useMemo(() => {
+    const { xs = 12, sm = 6, md = 4, lg = 6 } = itemsPerRow || {};
+    return { xs, sm, md, lg };
+  }, [itemsPerRow]);
 
   function sortArray(a: FileLibraryListItem, b: FileLibraryListItem): -1 | 0 | 1 {
     try {
@@ -64,10 +71,10 @@ const FileLibrary: React.FC<FileLibraryProps> = (
         return (
           <Col
             key={index}
-            xs={12}
-            sm={6}
-            md={4}
-            lg={3}
+            xs={itemsPerRowParsed.xs || 12}
+            sm={itemsPerRowParsed.sm || 6}
+            md={itemsPerRowParsed.md || 4}
+            lg={itemsPerRowParsed.lg || 3}
             className="mb-3"
             onClick={() => setSelectedItem(element)}
           >
@@ -132,6 +139,7 @@ FileLibrary.defaultProps = {
   sortAscending: false,
   libraryCardComponent: FileLibraryCard,
   itemsPerPage: 12,
+  itemsPerRow: { xs: 12, sm: 12, md: 6, lg: 3 }
 };
 
 export default FileLibrary;

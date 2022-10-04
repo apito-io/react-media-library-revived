@@ -17,7 +17,8 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
     libraryCardComponent,
     sortProperty,
     itemsPerPage,
-    dialogClassName
+    dialogClassName,
+    itemsPerRow
   } = props;
 
   return (
@@ -41,6 +42,7 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
           libraryCardComponent={libraryCardComponent}
           sortProperty={sortProperty}
           itemsPerPage={itemsPerPage}
+          itemsPerRow={itemsPerRow}
         />
       </Modal.Body>
     </Modal>
