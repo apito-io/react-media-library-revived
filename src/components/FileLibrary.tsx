@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import FileLibraryPager from './FileLibraryPager';
 import { IItemsPerRow } from '../../types/components/FileLibrary';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const FileLibrary: React.FC<FileLibraryProps> = (
   props: FileLibraryProps
@@ -19,12 +21,16 @@ const FileLibrary: React.FC<FileLibraryProps> = (
     fileSelectCallback,
     itemsPerPage = 12,
     itemsPerRow,
+    isSearchable,
+    searchInputPlaceholder,
   } = props;
 
   const [selectedItem, setSelectedItem] = useState<FileLibraryListItem | undefined>(
     undefined
   );
   const [page, setPage] = useState<number>(1);
+  const [numberOfItems, setNumberOfItems] = useState<number>(0);
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const itemsPerRowParsed: IItemsPerRow = useMemo(() => {
     const { xs = 12, sm = 6, md = 4, lg = 6 } = itemsPerRow || {};
@@ -53,18 +59,35 @@ const FileLibrary: React.FC<FileLibraryProps> = (
     }
   }
 
-  function renderList(): ReactNode[] {
-    if (!fileLibraryList) return [];
+  const parseAndFilterByQueryValue = () =>
+    fileLibraryList.filter((file) => {
+      const { title = '' } = file || {};
+      // TODO: find better matching condition.
+      return title
+        .trim()
+        .toLocaleUpperCase()
+        .includes(searchValue.trim().toLocaleUpperCase());
+    });
+
+  const renderList = useMemo(() => {
+    if (!fileLibraryList) {
+      setNumberOfItems(0);
+      return [];
+    }
+
+    const parsedLibraryList: FileLibraryListItem[] =
+      isSearchable && searchValue !== '' ? parseAndFilterByQueryValue() : fileLibraryList;
+    setNumberOfItems(parsedLibraryList?.length || 0);
 
     const arrayStart = (page - 1) * itemsPerPage;
     let arrayEnd = arrayStart + itemsPerPage;
-    if (arrayEnd > fileLibraryList.length) {
+    if (arrayEnd > parsedLibraryList.length) {
       // If calculated end extends past length of actual array
       // Set calculated end as length of array
-      arrayEnd = fileLibraryList.length;
+      arrayEnd = parsedLibraryList.length;
     }
 
-    return [...fileLibraryList]
+    return [...parsedLibraryList]
       .sort(sortArray)
       .slice(arrayStart, arrayEnd)
       .map((element: FileLibraryListItem, index: number) => {
@@ -76,8 +99,7 @@ const FileLibrary: React.FC<FileLibraryProps> = (
             md={itemsPerRowParsed.md || 4}
             lg={itemsPerRowParsed.lg || 3}
             className="mb-3"
-            onClick={() => setSelectedItem(element)}
-          >
+            onClick={() => setSelectedItem(element)}>
             {React.createElement(libraryCardComponent as React.FC<FileLibraryListItem>, {
               selectedItem,
               ...element,
@@ -85,7 +107,7 @@ const FileLibrary: React.FC<FileLibraryProps> = (
           </Col>
         );
       });
-  }
+  }, [searchValue, fileLibraryList, page]);
 
   const submitRow: ReactNode = selectedItem && (
     <Row>
@@ -97,26 +119,24 @@ const FileLibrary: React.FC<FileLibraryProps> = (
               if (fileDeleteCallback)
                 fileDeleteCallback(selectedItem as FileLibraryListItem);
             }}
-            className="mr-3"
-          >
+            className="mr-3">
             Delete
           </Button>
         )}
         <Button
           variant="primary"
-          onClick={() => fileSelectCallback(selectedItem as FileLibraryListItem)}
-        >
+          onClick={() => fileSelectCallback(selectedItem as FileLibraryListItem)}>
           Select File
         </Button>
       </Col>
     </Row>
   );
 
-  const pagerRow: ReactNode = fileLibraryList.length > itemsPerPage && (
+  const pagerRow: ReactNode = numberOfItems > itemsPerPage && (
     <Row>
       <Col className="d-flex justify-content-center">
         <FileLibraryPager
-          count={fileLibraryList.length}
+          count={numberOfItems}
           page={page}
           pagerCallback={(number: number) => setPage(number)}
           itemsPerPage={itemsPerPage}
@@ -127,7 +147,26 @@ const FileLibrary: React.FC<FileLibraryProps> = (
 
   return (
     <>
-      <Row className="py-3">{renderList()}</Row>
+      {isSearchable && (
+        <Row>
+          <Col lg="12">
+            <Form className="my-3">
+              <InputGroup className="mb-3">
+                <Form.Control
+                  placeholder={searchInputPlaceholder}
+                  aria-label={searchInputPlaceholder}
+                  aria-describedby="search-items"
+                  value={searchValue}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setSearchValue(e.target.value);
+                  }}
+                />
+              </InputGroup>
+            </Form>
+          </Col>
+        </Row>
+      )}
+      <Row className="py-3">{renderList}</Row>
       {pagerRow}
       {submitRow}
     </>
@@ -140,6 +179,8 @@ FileLibrary.defaultProps = {
   libraryCardComponent: FileLibraryCard,
   itemsPerPage: 12,
   itemsPerRow: { xs: 12, sm: 12, md: 6, lg: 3 },
+  isSearchable: false,
+  searchInputPlaceholder: 'Search files by title',
 };
 
 export default FileLibrary;

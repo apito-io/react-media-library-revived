@@ -60,6 +60,8 @@ fileLibraryList | array | `[]` | Array of files to display in the library tab. E
 libraryCardComponent | React.FC | [FileLibraryCard](src/components/FileLibraryCard.tsx) | Custom rendering component for the card in the library tab. See [FileLibraryCard](src/components/FileLibraryCard.tsx) as an example.
 sortProperty | "title", "createdAt", "size" or "fileName" | "createdAt" | Sorting property for files in the library.
 sortAscending | boolean | false | Sort direction
+isSearchable | boolean | false | If set to true, it will enable live search by title via simple input field. It will search only files with the title value.
+searchInputPlaceholder | string | 'Search files by title' | Defines placeholder inside search box input
 dialogClassName | string | N/A | Adds a custom string as a class to the modal
 fileUploadCallback | function | N/A (Required) | See [fileUploadCallback](#fileuploadcallback)  
 fileSelectCallback | function | N/A (Required) | See [fileSelectCallback](#fileselectcallback)  

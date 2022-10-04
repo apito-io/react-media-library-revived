@@ -7,7 +7,6 @@ interface IItemsPerRow {
   lg?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 }
 
-
 export interface FileLibraryListItem {
   _id: string | number;
   title?: string;
@@ -42,4 +41,10 @@ export interface FileLibraryProps {
    * @example { xs: 12, sm: 12, md: 6, lg: 3 }
    */
   itemsPerRow?: IItemsPerRow;
+  /** If set to true, it will enable live search by title. It will search only images with title value */
+  isSearchable?: boolean;
+  /** Defines placeholder inside search box input
+   * default value is: 'Search files by title'
+   * */
+  searchInputPlaceholder?: string;
 }
