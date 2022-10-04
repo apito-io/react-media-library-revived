@@ -55,7 +55,7 @@ show | boolean | N/A (Required) | Shows and hides the modal. The on / off switch
 onHide | function | N/A (Required) | Callback function when the user clicks the close button. At the very least, this function should set the `show` prop to false.
 modalTitle | string | "Media Library" | Title text that appears at the top of the modal. 
 itemsPerPage | number | 12 | Number of items per page. 
-itemsPerPage | object | `{ xs: 12, sm: 6, md: 4, lg: 6 }` | how many colums per row on different bootstrap breakpoints.
+itemsPerRow | object | `{ xs: 12, sm: 6, md: 4, lg: 6 }` | how many colums per row on different bootstrap breakpoints. Values range from 1 to 12, where 12 is maximum. Value 12 will place one item per row, 4 three items per row etc. (12/value) = items per row 
 fileLibraryList | array | `[]` | Array of files to display in the library tab. Each item in the array has to be of type [FileLibraryListItem](#filelibrarylistitem).
 libraryCardComponent | React.FC | [FileLibraryCard](src/components/FileLibraryCard.tsx) | Custom rendering component for the card in the library tab. See [FileLibraryCard](src/components/FileLibraryCard.tsx) as an example.
 sortProperty | "title", "createdAt", "size" or "fileName" | "createdAt" | Sorting property for files in the library.
