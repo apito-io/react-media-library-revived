@@ -4,8 +4,11 @@ import Tab from 'react-bootstrap/Tab';
 import FileUpload from './FileUpload';
 import FileLibrary from './FileLibrary';
 const ReactMediaLibraryTabs = (props) => {
-    const { fileUploadCallback, fileLibraryList, fileSelectCallback, fileDeleteCallback, libraryCardComponent, sortProperty, itemsPerPage, itemsPerRow, isSearchable, searchInputPlaceholder, } = props;
-    return (React.createElement(Tabs, { defaultActiveKey: "upload", id: "react-media-library-tabs" },
+    const { fileUploadCallback, fileLibraryList, fileSelectCallback, fileDeleteCallback, tabChangeCallback, libraryCardComponent, sortProperty, itemsPerPage, itemsPerRow, isSearchable, searchInputPlaceholder, } = props;
+    return (React.createElement(Tabs, { defaultActiveKey: "upload", id: "react-media-library-tabs", onSelect: (eventKey) => {
+            if (tabChangeCallback)
+                tabChangeCallback(eventKey);
+        } },
         React.createElement(Tab, { eventKey: "upload", title: "Upload" },
             React.createElement("div", { className: "pt-3" },
                 React.createElement(FileUpload, { fileUploadCallback: fileUploadCallback }))),

@@ -28,6 +28,7 @@ export interface FileLibraryProps {
   sortAscending?: boolean;
   fileSelectCallback: (item: FileLibraryListItem) => void;
   fileDeleteCallback?: (item: FileLibraryListItem) => void;
+  tabChangeCallback?: (tabKey: string) => void;
   /** Custom rendering component for the card in the library tab. */
   libraryCardComponent?: React.FC<any>;
   /** Number of items per page.  */

@@ -22,6 +22,7 @@ Note: this only includes the UI; everybody's app is different so I can't write y
     - [fileUploadCallback](#fileuploadcallback)
     - [fileSelectCallback](#fileselectcallback)
     - [fileDeleteCallback](#filedeletecallback)
+    - [tabChangeCallback](#tabchangecallback)
 - [Interfaces](#interfaces)
     - [FileMeta](#filemeta)
     - [FileLibraryListItem](#FileLibraryListItem)
@@ -66,15 +67,18 @@ dialogClassName | string | N/A | Adds a custom string as a class to the modal
 fileUploadCallback | function | N/A (Required) | See [fileUploadCallback](#fileuploadcallback)  
 fileSelectCallback | function | N/A (Required) | See [fileSelectCallback](#fileselectcallback)  
 fileDeleteCallback | function | N/A | See [fileDeleteCallback](#filedeletecallback)  
+tabChangeCallback | function | N/A | See [tabChangeCallback](#filechangecallback)  
 
+---
 ## Functions
 
-## fileUploadCallback
+### fileUploadCallback
 
 Async callback function when the user chooses a file to upload. This is used for both the drag-and-drop as well as the browser file select. The first argument is the file base64 as a string. The second argument contains the [FileMeta](#filemeta) information. This promise should return true or false to let React Media Library know if the APIs successfully processed the file.
 
-```
+```typescript
 import {FileMeta} from 'react-media-library-revived';
+
 async function uploadCallback(fileBase64: string, fileMeta: FileMeta): Promise<boolean> {
     // Process the file data, send it to backend APIs, add it to the database, etc...
     // Also remember to update the fileLibraryList prop with a new list
@@ -89,8 +93,9 @@ async function uploadCallback(fileBase64: string, fileMeta: FileMeta): Promise<b
 
 Callback function when the user selects a file from the library. Returns [FileLibraryListItem](#filelibrarylistitem) as the first argument.
 
-```
+```typescript
 import {FileLibraryListItem} from 'react-media-library-revived';
+
 function selectCallback(item: FileLibraryListItem) {
     // Use the file, put the file ID into your input field, etc
 }
@@ -100,14 +105,20 @@ function selectCallback(item: FileLibraryListItem) {
 
 Optional callback function when the user chooses a file and clicks the delete button. Delete button will appear beside the select button in the library tab, or will be hidden if this prop is not set. Returns [FileLibraryListItem](#filelibrarylistitem) as the first argument.
  
-```
+```typescript
 import {FileLibraryListItem} from 'react-media-library-revived';
+
 function deleteCallback(item: FileLibraryListItem) {
     // Delete the data from your database
     // Also remember to update the fileLibraryList prop with a new list
 }
 ```
+### tabChangeCallback
 
+Optional callback function when the user changes tab inside modal window. Returns string as the first and only argument.
+
+---
+ 
 ## Interfaces
 
 Note: All (more) interfaces are viewable in the `/types` directory of this package. Below are the main ones you will use.
@@ -133,113 +144,137 @@ thumbnailUrl | string (optional) | URL for thumbnail to display image in library
 fileName | string (optional) | Displayed filename on card in library tab.
 ??? | any | Any other properties you put in, you get back in the `fileSelectCallback` & `fileDeleteCallback` functions. 
 
+---
+
 ## Example
 
-```
-import React, {useEffect, useState} from 'react';
-import {FileLibraryListItem, ReactMediaLibraryRevived, FileMeta} from 'react-media-library-revived';
+```typescript
+import React, { useEffect, useState } from 'react';
+import {
+  FileLibraryListItem,
+  ReactMediaLibraryRevived,
+  FileMeta,
+} from 'react-media-library-revived';
 
 const ReactMediaLibraryWrapper: React.FC = () => {
-    const [display, setDisplay] = useState<boolean>(false);
-    const [fileLibraryList, setFileLibraryList] = useState<FileLibraryListItem[]>([]);
-        
-    useEffect(() => {
-        // TODO Get file list from database
-        setFileLibraryList([
-            {
-            _id: 1,
-            title: 'Cat 300x300',
-            size: 294880,
-            fileName: 'cat300.jpg',
-            type: 'image/jpeg',
-            createdAt: new Date('2022-10-17T03:12:29.866Z'),
-            thumbnailUrl: 'https://placekitten.com/300/300',
-            },
-            {
-            _id: 2,
-            title: 'Cat 500x500',
-            size: 864483,
-            fileName: 'cat500.jpg',
-            type: 'image/jpeg',
-            createdAt: new Date('2022-10-17T03:12:45.018Z'),
-            thumbnailUrl: 'https://placekitten.com/500/500',
-            },
-            {
-            _id: 3,
-            title: 'Cat 600x600',
-            size: 586458,
-            fileName: 'cat600.jpg',
-            type: 'image/jpeg',
-            createdAt: new Date('2022-10-17T03:19:33.498Z'),
-            thumbnailUrl: 'https://placekitten.com/600/600',
-            },
-            {
-            _id: 4,
-            title: 'Cat 800x800',
-            size: 894665,
-            fileName: 'photo-107.jpg',
-            type: 'image/jpeg',
-            createdAt: new Date('2022-10-17T03:28:39.723Z'),
-            thumbnailUrl: 'https://placekitten.com/800/800',
-            },
-        ]);
+  const [display, setDisplay] = useState<boolean>(false);
+  const [fileLibraryList, setFileLibraryList] = useState<FileLibraryListItem[]>(
+    [],
+  );
 
-    }, []);
+  useEffect(() => {
+    // TODO Get file list from database
+    setFileLibraryList([
+      {
+        _id: 1,
+        title: 'Cat 300x300',
+        size: 294880,
+        fileName: 'cat300.jpg',
+        type: 'image/jpeg',
+        createdAt: new Date('2022-10-17T03:12:29.866Z'),
+        thumbnailUrl: 'https://placekitten.com/300/300',
+      },
+      {
+        _id: 2,
+        title: 'Cat 500x500',
+        size: 864483,
+        fileName: 'cat500.jpg',
+        type: 'image/jpeg',
+        createdAt: new Date('2022-10-17T03:12:45.018Z'),
+        thumbnailUrl: 'https://placekitten.com/500/500',
+      },
+      {
+        _id: 3,
+        title: 'Cat 600x600',
+        size: 586458,
+        fileName: 'cat600.jpg',
+        type: 'image/jpeg',
+        createdAt: new Date('2022-10-17T03:19:33.498Z'),
+        thumbnailUrl: 'https://placekitten.com/600/600',
+      },
+      {
+        _id: 4,
+        title: 'Cat 800x800',
+        size: 894665,
+        fileName: 'photo-107.jpg',
+        type: 'image/jpeg',
+        createdAt: new Date('2022-10-17T03:28:39.723Z'),
+        thumbnailUrl: 'https://placekitten.com/800/800',
+      },
+    ]);
+  }, []);
 
-    async function uploadCallback(fileBase64: string, fileMeta: FileMeta): Promise<boolean> {
-        // TODO Upload file to backend APIs
-        const result = await fileUpload(fileBase64, fileMeta);
+  async function uploadCallback(
+    fileBase64: string,
+    fileMeta: FileMeta,
+  ): Promise<boolean> {
+    // TODO Upload file to backend APIs
+    const result = await fileUpload(fileBase64, fileMeta);
 
-        if (result.success) {
-            // New file uploaded
-            // TODO Reacquire new file list from database
-            const newFileList = await getNewFileList();
-            setFileLibraryList(newFileList);
+    if (result.success) {
+      // New file uploaded
+      // TODO Reacquire new file list from database
+      const newFileList = await getNewFileList();
+      setFileLibraryList(newFileList);
 
-            // Return true to display upload success in modal
-            return true;
-        } else {
-            // Return false to display upload failed in modal
-            return false;
-        }
+      // Return true to display upload success in modal
+      return true;
+    } else {
+      // Return false to display upload failed in modal
+      return false;
     }
+  }
 
-    function selectCallback(item: FileLibraryListItem) {
-        // Hide modal
-        setDisplay(false);
+  function selectCallback(item: FileLibraryListItem) {
+    // Hide modal
+    setDisplay(false);
 
-        // TODO Pass selected file back to client component callback function
-        clientSelectCallback(item);
+    // TODO Pass selected file back to client component callback function
+    clientSelectCallback(item);
+  }
+
+  async function deleteCallback(item: FileLibraryListItem) {
+    // TODO Delete file from backend service
+    const result = await fileDelete(item);
+
+    if (result.success) {
+      // Deleted file
+      // TODO Reacquire file list from database
+      const newFileList = await getNewFileList();
+      setFileLibraryList(newFileList);
     }
+  }
 
-    async function deleteCallback(item: FileLibraryListItem) {
-        // TODO Delete file from backend service
-        const result = await fileDelete(item);
-        
-        if (result.success) {
-            // Deleted file 
-            // TODO Reacquire file list from database
-            const newFileList = await getNewFileList();
-            setFileLibraryList(newFileList);
-        }
-    }
+  function tabChangeHandler(key: string) {
+    // ...
+  }
 
-    return (
-        <React.Fragment>
-            <button onClick={() => setDisplay(true)}>Open React Media Library Revived</button>
-            <ReactMediaLibraryRevived
-                show={display}
-                onHide={() => setDisplay(false)}
-                fileUploadCallback={uploadCallback}
-                fileLibraryList={fileLibraryList}
-                fileSelectCallback={selectCallback}
-                fileDeleteCallback={deleteCallback}
-            />
-        </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      <button
+        onClick={() => {
+          setDisplay(true);
+        }}
+      >
+        Open React Media Library Revived
+      </button>
+      <ReactMediaLibraryRevived
+        show={display}
+        onHide={() => {
+          setDisplay(false);
+        }}
+        fileUploadCallback={uploadCallback}
+        fileLibraryList={fileLibraryList}
+        fileSelectCallback={selectCallback}
+        fileDeleteCallback={deleteCallback}
+        tabChangeCallback={tabChangeHandler}
+      />
+    </React.Fragment>
+  );
 };
 
 export default ReactMediaLibraryWrapper;
+
 ```
 
 <!-- ## Screenshots
