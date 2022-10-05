@@ -99,7 +99,13 @@ const FileLibrary: React.FC<FileLibraryProps> = (
             md={itemsPerRowParsed.md || 4}
             lg={itemsPerRowParsed.lg || 3}
             className="mb-3"
-            onClick={() => setSelectedItem(element)}>
+            onClick={() => {
+              if (selectedItem?._id !== element?._id) {
+                setSelectedItem(element);
+              } else {
+                setSelectedItem(undefined);
+              }
+            }}>
             {React.createElement(libraryCardComponent as React.FC<FileLibraryListItem>, {
               selectedItem,
               ...element,
@@ -107,7 +113,7 @@ const FileLibrary: React.FC<FileLibraryProps> = (
           </Col>
         );
       });
-  }, [searchValue, fileLibraryList, page]);
+  }, [searchValue, fileLibraryList, page, selectedItem]);
 
   const submitRow: ReactNode = selectedItem && (
     <Row>

@@ -14,6 +14,7 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
     fileUploadCallback,
     fileSelectCallback,
     fileDeleteCallback,
+    tabChangeCallback,
     libraryCardComponent,
     sortProperty,
     itemsPerPage,
@@ -46,6 +47,7 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
           itemsPerRow={itemsPerRow}
           isSearchable={isSearchable}
           searchInputPlaceholder={searchInputPlaceholder}
+          tabChangeCallback={tabChangeCallback}
         />
       </Modal.Body>
     </Modal>

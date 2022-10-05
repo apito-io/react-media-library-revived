@@ -13,6 +13,7 @@ const ReactMediaLibraryTabs: React.FC<ReactMediaLibraryTabsProps> = (
     fileLibraryList,
     fileSelectCallback,
     fileDeleteCallback,
+    tabChangeCallback,
     libraryCardComponent,
     sortProperty,
     itemsPerPage,
@@ -22,7 +23,12 @@ const ReactMediaLibraryTabs: React.FC<ReactMediaLibraryTabsProps> = (
   } = props;
 
   return (
-    <Tabs defaultActiveKey="upload" id="react-media-library-tabs">
+    <Tabs
+      defaultActiveKey="upload"
+      id="react-media-library-tabs"
+      onSelect={(eventKey: string) => {
+        if (tabChangeCallback) tabChangeCallback(eventKey);
+      }}>
       <Tab eventKey="upload" title="Upload">
         <div className="pt-3">
           <FileUpload fileUploadCallback={fileUploadCallback} />

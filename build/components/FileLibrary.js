@@ -65,9 +65,16 @@ const FileLibrary = (props) => {
             .sort(sortArray)
             .slice(arrayStart, arrayEnd)
             .map((element, index) => {
-            return (React.createElement(Col, { key: index, xs: itemsPerRowParsed.xs || 12, sm: itemsPerRowParsed.sm || 6, md: itemsPerRowParsed.md || 4, lg: itemsPerRowParsed.lg || 3, className: "mb-3", onClick: () => setSelectedItem(element) }, React.createElement(libraryCardComponent, Object.assign({ selectedItem }, element))));
+            return (React.createElement(Col, { key: index, xs: itemsPerRowParsed.xs || 12, sm: itemsPerRowParsed.sm || 6, md: itemsPerRowParsed.md || 4, lg: itemsPerRowParsed.lg || 3, className: "mb-3", onClick: () => {
+                    if ((selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem._id) !== (element === null || element === void 0 ? void 0 : element._id)) {
+                        setSelectedItem(element);
+                    }
+                    else {
+                        setSelectedItem(undefined);
+                    }
+                } }, React.createElement(libraryCardComponent, Object.assign({ selectedItem }, element))));
         });
-    }, [searchValue, fileLibraryList, page]);
+    }, [searchValue, fileLibraryList, page, selectedItem]);
     const submitRow = selectedItem && (React.createElement(Row, null,
         React.createElement(Col, { className: "text-right" },
             fileDeleteCallback !== undefined && (React.createElement(Button, { variant: "danger", onClick: () => {
