@@ -100,6 +100,9 @@ const FileLibrary: React.FC<FileLibraryProps> = (
             lg={itemsPerRowParsed.lg || 3}
             className="mb-3"
             onClick={() => {
+              if (fileDeleteCallback === undefined) {
+                fileSelectCallback(element as FileLibraryListItem);
+              }
               if (selectedItem?._id !== element?._id) {
                 setSelectedItem(element);
               } else {

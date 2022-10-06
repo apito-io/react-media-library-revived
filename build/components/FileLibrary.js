@@ -66,6 +66,9 @@ const FileLibrary = (props) => {
             .slice(arrayStart, arrayEnd)
             .map((element, index) => {
             return (React.createElement(Col, { key: index, xs: itemsPerRowParsed.xs || 12, sm: itemsPerRowParsed.sm || 6, md: itemsPerRowParsed.md || 4, lg: itemsPerRowParsed.lg || 3, className: "mb-3", onClick: () => {
+                    if (fileDeleteCallback === undefined) {
+                        fileSelectCallback(element);
+                    }
                     if ((selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem._id) !== (element === null || element === void 0 ? void 0 : element._id)) {
                         setSelectedItem(element);
                     }
