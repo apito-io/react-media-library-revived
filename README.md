@@ -55,9 +55,6 @@ This package only includes one component you should use: `<ReactMediaLibraryRevi
 
 | Prop                   | Value Type                                 | Default                                               | Description                                                                                                                                                                                             |
 | ---------------------- | ------------------------------------------ | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| show                   | boolean                                    | N/A (Required)                                        | Shows and hides the modal. The on / off switch is controlled outside the app. Your app will have to inform React Media Library when to hide and when to show.                                           |
-| onHide                 | function                                   | N/A (Required)                                        | Callback function when the user clicks the close button. At the very least, this function should set the `show` prop to false.                                                                          |
-| modalTitle             | string                                     | "Media Library"                                       | Title text that appears at the top of the modal.                                                                                                                                                        |
 | itemsPerPage           | number                                     | 12                                                    | Number of items per page.                                                                                                                                                                               |
 | itemsPerRow            | object                                     | `{ xs: 12, sm: 6, md: 4, lg: 6 }`                     | how many colums per row on different bootstrap breakpoints. Values range from 1 to 12, where 12 is maximum. Value 12 will place one item per row, 4 three items per row etc. (12/value) = items per row |
 | fileLibraryList        | array                                      | `[]`                                                  | Array of files to display in the library tab. Each item in the array has to be of type [FileLibraryListItem](#filelibrarylistitem).                                                                     |
@@ -66,7 +63,6 @@ This package only includes one component you should use: `<ReactMediaLibraryRevi
 | sortAscending          | boolean                                    | false                                                 | Sort direction                                                                                                                                                                                          |
 | isSearchable           | boolean                                    | false                                                 | If set to true, it will enable live search by title via simple input field. It will search only files with the title value.                                                                             |
 | searchInputPlaceholder | string                                     | 'Search files by title'                               | Defines placeholder inside search box input                                                                                                                                                             |
-| dialogClassName        | string                                     | N/A                                                   | Adds a custom string as a class to the modal                                                                                                                                                            |
 | fileUploadCallback     | function                                   | N/A (Required)                                        | See [fileUploadCallback](#fileuploadcallback)                                                                                                                                                           |
 | fileSelectCallback     | function                                   | N/A (Required)                                        | See [fileSelectCallback](#fileselectcallback)                                                                                                                                                           |
 | fileDeleteCallback     | function                                   | N/A                                                   | See [fileDeleteCallback](#filedeletecallback)                                                                                                                                                           |
@@ -261,10 +257,6 @@ const ReactMediaLibraryWrapper: React.FC = () => {
         Open React Media Library Revived
       </button>
       <ReactMediaLibraryRevived
-        show={display}
-        onHide={() => {
-          setDisplay(false);
-        }}
         fileUploadCallback={uploadCallback}
         fileLibraryList={fileLibraryList}
         fileSelectCallback={selectCallback}

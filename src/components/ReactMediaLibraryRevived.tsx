@@ -4,12 +4,11 @@ import Modal from 'react-bootstrap/Modal';
 import ReactMediaLibraryTabs from './ReactMediaLibraryTabs';
 
 const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
-  props: ReactMediaLibraryRevivedProps
+  props: ReactMediaLibraryRevivedProps,
 ): React.ReactElement => {
   const {
     show,
     onHide,
-    modalTitle,
     fileLibraryList,
     fileUploadCallback,
     fileSelectCallback,
@@ -18,44 +17,26 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
     libraryCardComponent,
     sortProperty,
     itemsPerPage,
-    dialogClassName,
     itemsPerRow,
     isSearchable,
     searchInputPlaceholder,
   } = props;
 
   return (
-    <Modal
-      size="xl"
-      show={show}
-      onHide={onHide}
-      id="react-media-library-revived-modal"
-      aria-labelledby="react-media-library-revived-modal"
-      dialogClassName={dialogClassName}>
-      <Modal.Header closeButton>
-        {modalTitle && <Modal.Title>{modalTitle}</Modal.Title>}
-      </Modal.Header>
-      <Modal.Body>
-        <ReactMediaLibraryTabs
-          fileLibraryList={fileLibraryList}
-          fileUploadCallback={fileUploadCallback}
-          fileSelectCallback={fileSelectCallback}
-          fileDeleteCallback={fileDeleteCallback}
-          libraryCardComponent={libraryCardComponent}
-          sortProperty={sortProperty}
-          itemsPerPage={itemsPerPage}
-          itemsPerRow={itemsPerRow}
-          isSearchable={isSearchable}
-          searchInputPlaceholder={searchInputPlaceholder}
-          tabChangeCallback={tabChangeCallback}
-        />
-      </Modal.Body>
-    </Modal>
+    <ReactMediaLibraryTabs
+      fileLibraryList={fileLibraryList}
+      fileUploadCallback={fileUploadCallback}
+      fileSelectCallback={fileSelectCallback}
+      fileDeleteCallback={fileDeleteCallback}
+      libraryCardComponent={libraryCardComponent}
+      sortProperty={sortProperty}
+      itemsPerPage={itemsPerPage}
+      itemsPerRow={itemsPerRow}
+      isSearchable={isSearchable}
+      searchInputPlaceholder={searchInputPlaceholder}
+      tabChangeCallback={tabChangeCallback}
+    />
   );
-};
-
-ReactMediaLibraryRevived.defaultProps = {
-  modalTitle: 'Media Library',
 };
 
 export default ReactMediaLibraryRevived;

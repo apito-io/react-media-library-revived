@@ -33,8 +33,6 @@ export interface FileLibraryProps {
   libraryCardComponent?: React.FC<any>;
   /** Number of items per page.  */
   itemsPerPage?: number;
-  /** Adds a custom string as a class to the modal */
-  dialogClassName?: string;
   /** Number of items per row.
    * An object with breakpoint keys and values
    * default value is:

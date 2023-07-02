@@ -29,11 +29,6 @@ const ReactMediaLibraryTabs: React.FC<ReactMediaLibraryTabsProps> = (
       onSelect={(eventKey: string) => {
         if (tabChangeCallback) tabChangeCallback(eventKey);
       }}>
-      <Tab eventKey="upload" title="Upload">
-        <div className="pt-3">
-          <FileUpload fileUploadCallback={fileUploadCallback} />
-        </div>
-      </Tab>
       {Array.isArray(fileLibraryList) && fileLibraryList.length > 0 && (
         <Tab eventKey="library" title="Library">
           <FileLibrary
@@ -49,6 +44,11 @@ const ReactMediaLibraryTabs: React.FC<ReactMediaLibraryTabsProps> = (
           />
         </Tab>
       )}
+      <Tab eventKey="upload" title="Upload">
+        <div className="pt-3">
+          <FileUpload fileUploadCallback={fileUploadCallback} />
+        </div>
+      </Tab>
     </Tabs>
   );
 };
