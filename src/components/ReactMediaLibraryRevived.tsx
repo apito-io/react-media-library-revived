@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ReactMediaLibraryRevivedProps } from '../../types';
-import Modal from 'react-bootstrap/Modal';
 import ReactMediaLibraryTabs from './ReactMediaLibraryTabs';
 
 const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
