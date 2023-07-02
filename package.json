@@ -35,6 +35,8 @@
     "prettier": "^2.7.1"
   },
   "dependencies": {
+    "bootstrap": "^5.2.0",
+    "bootstrap-icons": "1.10.4",
     "react-bootstrap": "^2.5.0",
     "react-dropzone": "^14.2.2"
   },
