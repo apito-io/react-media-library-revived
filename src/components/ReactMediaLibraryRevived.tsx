@@ -7,8 +7,6 @@ const ReactMediaLibraryRevived: React.FC<ReactMediaLibraryRevivedProps> = (
   props: ReactMediaLibraryRevivedProps,
 ): React.ReactElement => {
   const {
-    show,
-    onHide,
     fileLibraryList,
     fileUploadCallback,
     fileSelectCallback,
